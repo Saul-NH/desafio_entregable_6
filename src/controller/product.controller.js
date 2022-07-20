@@ -4,10 +4,10 @@ const product = new Product('./src/data/productos.txt');
 const getAllProducts = async(req, res) => {
     try {
         const products= await product.getAll()
-        res.render('productList.ejs', {products})
-        // res.json({
-        //     products: await product.getAll()
-        // });
+        // res.render('productList.ejs', {products})
+        res.json({
+            products: await product.getAll()
+        });
     } catch (error) {
         res.status(500).json({
             error: 'Something went wrong'
@@ -38,10 +38,10 @@ const getProductById = async(req, res) => {
 const createProduct = async(req, res) => {
     try {
         const productCreated = await product.save(req.body);
-        res.redirect('/')
-        // res.json({
-        //     'product':productCreated
-        // })
+        // res.redirect('/')
+        res.json({
+            'product':productCreated
+        })
     } catch (error) {
         res.status(500).json({
             error: 'Something went wrong'
